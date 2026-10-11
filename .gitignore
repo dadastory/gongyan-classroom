@@ -1,0 +1,36 @@
+node_modules/
+.venv/
+.venv-test/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.env
+.env.*
+/test_provider*
+data/
+backups/
+*-backup.sql
+*.db
+*.db-shm
+*.db-wal
+frontend/dist/
+artifacts/
+playwright-report/
+test-results/
+*.egg-info/
+
+# 用户提供的材料与本地开发记录
+/*.docx
+/AGENTS.md
+/.codex/
+/.agents/
+/docs/
+/openspec/
+
+# 本地验证工具，发布仓库只保留运行代码
+/backend/tests/
+/scripts/*
+!/scripts/quickstart.py
+!/scripts/run.py
+!/scripts/setup.py
