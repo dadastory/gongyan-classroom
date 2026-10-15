@@ -44,6 +44,7 @@ export function LoginPage() {
       <Button block type="primary" size="large" htmlType="submit" loading={busy} icon={<ArrowRightOutlined />}>{register ? '创建账号' : '登录学习空间'}</Button>
     </Form><div className="login-switch">{register ? '已经有账号？' : '第一次来到这里？'}<Button type="link" onClick={() => { setRegister(!register); setError(undefined); }}>{register ? '去登录' : '创建账号'}</Button></div>
     <div className="login-tip"><BookOutlined /><span>老师创建课题，学生通过课题码加入。<br />讨论进度与小组成员实时同步。</span></div>
+    <Link to="/examples" className="example-login-entry"><strong>先看看一堂课如何展开 →</strong><span>免登录浏览真实模型案例 · 讨论、教育支架与教师干预全过程</span></Link>
   </div></section></div>;
 }
 

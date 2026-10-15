@@ -17,6 +17,7 @@ const TopicPage = lazy(() => import('./pages/topic').then(module => ({ default: 
 const GroupPage = lazy(() => import('./pages/group').then(module => ({ default: module.GroupPage })));
 const SettingsPage = lazy(() => import('./pages/settings').then(module => ({ default: module.SettingsPage })));
 const PresentationPage = lazy(() => import('./pages/presentation').then(module => ({ default: module.PresentationPage })));
+const ExamplesPage = lazy(() => import('./pages/examples').then(module => ({ default: module.ExamplesPage })));
 
 function Shell() {
   const { user, loading, setUser, error, retry } = useAuth();
@@ -35,7 +36,7 @@ function Shell() {
       <Link to="/" className="brand"><span className="brand-mark">共</span><span>共研<small>课堂协作学习</small></span></Link>
       <div className="workspace-label">{user.role === 'teacher' ? '教师工作空间' : '我的学习空间'}</div>
       <nav><Link to="/" className={!location.pathname.startsWith('/settings') ? 'selected' : ''}><BookOutlined />我的课题</Link>
-        {user.role === 'teacher' && <Link to="/settings" className={location.pathname === '/settings' ? 'selected' : ''}><SettingOutlined />智能助教设置</Link>}</nav>
+        {user.role === 'teacher' && <Link to="/settings" className={location.pathname === '/settings' ? 'selected' : ''}><SettingOutlined />智能助教设置</Link>}<Link to="/examples"><BookOutlined />课堂案例</Link></nav>
       <div className="sidebar-note"><span className="note-line" /><p>让每个声音<br />参与共同思考。</p><small>一起探索 · 一起建构</small></div>
       <Dropdown menu={{ items: [{ key: 'logout', icon: <LogoutOutlined />, label: '退出登录', onClick: () => void logout() }] }} trigger={['click']}>
         <button className="user-menu" aria-label="打开账号菜单"><Avatar style={{ background: '#e6ecf5', color: '#223750' }}>{user.name.slice(-2)}</Avatar>
@@ -59,6 +60,7 @@ createRoot(document.getElementById('root')!).render(
     components: { Button: { primaryShadow: 'none' }, Card: { headerFontSize: 14, headerHeight: 46, bodyPadding: 18 },
       Form: { itemMarginBottom: 16 }, Tabs: { horizontalItemGutter: 24 } } }}>
     <AntApp><ErrorBoundary><BrowserRouter><AuthProvider><Suspense fallback={<PageLoad />}><Routes><Route path="/login" element={<LoginPage />} />
+      <Route path="/examples" element={<ExamplesPage />} /><Route path="/examples/:exampleId" element={<ExamplesPage />} />
       <Route element={<Shell />}><Route index element={<TopicsPage />} /><Route path="/topics/:topicId" element={<TopicPage />} />
         <Route path="/groups/:groupId" element={<GroupPage />} /><Route element={<TeacherOnly />}>
           <Route path="/settings" element={<SettingsPage />} /><Route path="/topics/:topicId/presentation" element={<PresentationPage />} />

@@ -75,7 +75,7 @@ export function ErrorNotice({ error, retry }: { error?: string; retry: () => unk
     action={<Button size="small" onClick={() => retry()}>重试</Button>} /> : null;
 }
 export function StageTrack({ stages, current, completed }: { stages: { name: string }[]; current: number; completed?: boolean }) {
-  return <div className="stage-track">{stages.map((stage, index) => <div key={index} className={`stage ${index < current || completed ? 'done' : index === current ? 'current' : ''}`}>
-    <span className="stage-dot">{index < current || completed ? '✓' : index + 1}</span><span>{stage.name}</span></div>)}</div>;
+  return <div className="stage-track">{stages.map((stage, index) => <div key={index} className={`stage ${index < current || completed && index === current ? 'done' : index === current ? 'current' : ''}`}>
+    <span className="stage-dot">{index < current || completed && index === current ? '✓' : index + 1}</span><span>{stage.name}</span></div>)}</div>;
 }
 export function FormActions({ children }: { children: React.ReactNode }) { return <div className="form-actions"><Space>{children}</Space></div>; }

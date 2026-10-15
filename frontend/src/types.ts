@@ -85,6 +85,22 @@ export interface AnalysisTask {
 export interface Skill {
   id: string; slug: string; title: string; description: string; version: number; markdown: string; digest: string; created_at: number;
 }
+export interface ExampleSummary {
+  id: string; title: string; description: string; recorded_at: number; source_note: string;
+  model: string; student_count: number; group_count: number; message_count: number;
+  unit_count: number; checkpoint_count: number;
+}
+export interface ClassroomExample extends Omit<ExampleSummary, 'group_count' | 'message_count' | 'unit_count' | 'checkpoint_count'> {
+  settings: TopicSettings;
+  analysis_runs: Record<string, unknown>[];
+  groups: GroupDetail[];
+  checkpoints: { id: string; label: string; captured_at: number; group: GroupDetail }[];
+  events: AuditEvent[];
+  phases: { id: string; group_id: string; index: number; name: string; started_at: number; ended_at: number | null }[];
+  skills: Skill[];
+  checks: { label: string; result: string; detail: string; at: number }[];
+  provenance: { source_sha256: string; method: string };
+}
 export interface Connection {
   base_url: string; model: string; has_key: boolean; output_mode: 'json' | 'structured'; timeout_seconds: number;
   enabled: boolean; version: number; framework: string;

@@ -1,0 +1,96 @@
+{
+  "source": "backend/examples/classroom.json",
+  "source_note": "模拟课堂输入与真实模型返回；未改写任何截图中的业务内容。截图浏览器使用UTC时区，原始数据保留Unix时间戳。",
+  "figures": [
+    {
+      "number": 1,
+      "file": "figures/01-classroom-archive.png",
+      "source": "source/01-classroom-archive.html",
+      "title": "在线协作学习课堂的真实过程档案",
+      "caption": "案例页按小组保存真实模型分析、教师干预和过程快照。示例选择持续困惑组的归档节点；有效发言按原始学生消息计数，编码类别和证据可逐条核查。",
+      "panels": [
+        {
+          "label": "30 人六组课堂：原始讨论、投入编码与历史状态",
+          "file": "captures/01-classroom-archive.png"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "file": "figures/02-teacher-workspace.png",
+      "source": "source/02-teacher-workspace.html",
+      "title": "教师对多组协作讨论的过程观察",
+      "caption": "教师工作台汇总各组阶段、有效参与、有效发言与助教进度。截图记录本轮课堂结束后的实际状态，所有小组的历史记录继续保留。",
+      "panels": [
+        {
+          "label": "同一课题中的六组状态与投入指标",
+          "file": "captures/02-teacher-workspace.png"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "file": "figures/03-student-discussion.png",
+      "source": "source/03-student-discussion.html",
+      "title": "学生协作讨论与已发布教育支架",
+      "caption": "学生在所属小组查看讨论和已发布支架，完成观点回应与成果提交。教师的分析任务与个人情感编码不出现在学生视图中；截图时课堂已结束，输入区相应禁用。",
+      "panels": [
+        {
+          "label": "学生可见的同伴发言、教师解释与助教提示",
+          "file": "captures/03-student-discussion.png"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "file": "figures/04-agent-integration.png",
+      "source": "source/04-agent-integration.html",
+      "title": "教育智能体与在线协作平台的集成机制",
+      "caption": "Python 后端通过 Agno SDK 加载标准 SKILL.md，并调用教师配置的模型 API。编码结果校验后形成持续状态证据，再选择对应教育支架；模型、Skill、课题配置和状态变化分别留存。",
+      "panels": [
+        {
+          "label": "从原始讨论到后续观察的处理闭环",
+          "file": "captures/04-observation-loop.png"
+        },
+        {
+          "label": "持续规则、标准 Skill 与执行发布机制",
+          "file": "captures/04-agent-integration.png"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "file": "figures/05-automatic-intervention.png",
+      "source": "source/05-automatic-intervention.html",
+      "title": "持续偏题识别与教育支架的自动发布",
+      "caption": "同一小组的两个实际过程节点。连续非任务消息经真实编码后触发 task-refocus；自动模式直接向小组发布提示。初始节点尚无有效分析，完成后闲聊被识别为非任务内容，NS 均为 0。",
+      "panels": [
+        {
+          "label": "学生发言已保存，编码任务尚在排队",
+          "file": "captures/05-auto-before.png"
+        },
+        {
+          "label": "偏题证据成立后，自动发布任务聚焦支架",
+          "file": "captures/05-auto-after.png"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "file": "figures/06-teacher-review.png",
+      "source": "source/06-teacher-review.html",
+      "title": "教师确认、教育支架发布与后续观察",
+      "caption": "教师确认模式保留人工决策：待审提示经确认后发布，教师补充解释，学生继续发言并完成新的真实编码。后续观察描述窗口内的变化，不将变化解释为干预造成的效果。",
+      "panels": [
+        {
+          "label": "持续困惑触发认知澄清，等待教师确认",
+          "file": "captures/06-teacher-approval.png"
+        },
+        {
+          "label": "教师确认后发布，并记录后续讨论与复查结果",
+          "file": "captures/06-after-observation.png"
+        }
+      ]
+    }
+  ]
+}

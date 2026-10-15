@@ -156,7 +156,9 @@ export function GroupPage() {
       </div>
     </section><aside className="discussion-aside"><Card size="small" title="本组成员"><div className="member-list">{group.members.map(member => <div key={member.id}><Avatar size="small">{member.name.slice(-2)}</Avatar><span>{member.name}</span><i className={member.online ? 'online-dot' : 'offline-dot'} /></div>)}</div></Card>
       <Card size="small" title="讨论任务"><p className="preserve-text">{group.instructions}</p>{group.direction && <><strong>本组方向</strong><p>{group.direction}</p></>}{group.references && <Collapse ghost size="small" items={[{ key: 'reference', label: '查看参考资料', children: <p className="preserve-text">{group.references}</p> }]} />}</Card>
-      <Card size="small" title="阶段成果">{group.outcomes.length ? group.outcomes.slice(0, 5).map(item => <div className="outcome-item" key={item.id}><Tag>{item.phase_id === group.phase_id ? '当前阶段' : '此前阶段'}</Tag><span className="muted small">{timeText(item.created_at)}</span><p className="preserve-text">{item.content}</p></div>) : <p className="muted">还未提交成果。归纳共识后，点击“提交成果”。</p>}</Card>
+      <Card size="small" title="阶段成果">{group.outcomes.length ? group.outcomes.slice(0, 5).map(item => <div className="outcome-item" key={item.id}>
+        <Tag>{item.phase_id === group.phase_id ? '当前阶段' : '此前阶段'}</Tag><span className="muted small">{timeText(item.created_at)}</span><p className="preserve-text">{item.content}</p>
+      </div>) : <p className="muted">{group.state === 'completed' ? '本阶段未提交成果。' : group.state === 'paused' ? '恢复讨论后可提交阶段成果。' : group.state === 'waiting' ? '老师开始讨论后可提交阶段成果。' : '还未提交成果。归纳共识后，点击“提交成果”。'}</p>}</Card>
     </aside></div>
     {teacher && metrics && <div className="observatory"><SectionTitle title="学习投入观察" subtitle={`观察窗口 ${timeText(metrics.window_start)}–${timeText(metrics.window_end)} · 最近分析 ${timeText(metrics.last_analyzed_at)} · 编码覆盖 ${metrics.coverage == null ? '暂无数据' : `${Math.round(metrics.coverage * 100)}%`}`} />
       {metrics.pending_messages > 0 && <Alert type="info" showIcon className="form-alert" message={`${metrics.pending_messages} 条消息待分析。以下指标仅反映已有编码，尚不能代表完整讨论。`} />}

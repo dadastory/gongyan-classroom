@@ -9,7 +9,7 @@ from starlette.middleware.gzip import GZipMiddleware
 
 from .config import settings
 from .db import SessionLocal
-from .routes import ai, auth, discussion, reports, topics
+from .routes import ai, auth, discussion, examples, reports, topics
 from .web import FrontendFiles, RequestBodyLimitMiddleware
 from .worker import worker
 
@@ -70,7 +70,7 @@ def health():
     return {"status": "ok", "framework": "Agno", "version": "1.0.0"}
 
 
-for router in (auth.router, topics.router, discussion.router, ai.router, reports.router):
+for router in (auth.router, topics.router, discussion.router, ai.router, reports.router, examples.router):
     app.include_router(router, prefix="/api")
 
 app.mount("/", FrontendFiles(directory=settings().frontend_dist, check_dir=False), name="frontend")
